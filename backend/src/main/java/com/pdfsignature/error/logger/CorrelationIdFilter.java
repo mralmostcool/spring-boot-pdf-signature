@@ -1,4 +1,4 @@
-package com.pdfsignature.exceptions.logger;
+package com.pdfsignature.error.logger;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -29,8 +29,7 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
+            FilterChain filterChain) throws ServletException, IOException {
         String correlationId = request.getHeader(CORRELATION_ID_HEADER);
 
         if (!StringUtils.hasText(correlationId)) {
@@ -47,4 +46,3 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
         }
     }
 }
-
