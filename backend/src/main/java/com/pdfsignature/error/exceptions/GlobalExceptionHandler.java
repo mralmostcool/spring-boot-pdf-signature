@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleSignatureOperationException(
             SignatureOperationException ex, HttpServletRequest request) {
         log.error("Signature operation failed: {}", ex.getMessage(), ex);
-        return buildResponse(HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage(), request, null);
+        return buildResponse(HttpStatus.UNPROCESSABLE_CONTENT, ex.getMessage(), request, null);
     }
 
     @ExceptionHandler(StorageException.class)
@@ -145,7 +145,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMaxUploadSizeExceeded(
             MaxUploadSizeExceededException ex, HttpServletRequest request) {
         log.warn("Max upload size exceeded: {}", ex.getMessage());
-        return buildResponse(HttpStatus.PAYLOAD_TOO_LARGE, "Uploaded file size exceeds configured limit", request, null);
+        return buildResponse(HttpStatus.CONTENT_TOO_LARGE, "Uploaded file size exceeds configured limit", request, null);
     }
 
     @ExceptionHandler(Exception.class)
